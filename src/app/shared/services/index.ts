@@ -7,3 +7,4 @@ export * from './notifications.service';
 export * from './functions.service';
 export * from './functions.service';
 export * from './commands.service';
+export * from './permissions.service'
