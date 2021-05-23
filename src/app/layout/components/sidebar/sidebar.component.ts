@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { AuthService, UserService } from '@app/shared/services';
+import { AuthService, UsersService } from '@app/shared/services';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -18,7 +18,7 @@ export class SidebarComponent implements OnInit {
     @Output() collapsedEvent = new EventEmitter<boolean>();
 
     constructor(private translate: TranslateService,
-        public router: Router, private userService: UserService,
+        public router: Router, private userService: UsersService,
         private authService: AuthService) {
         this.loadMenu();
         this.router.events.subscribe(val => {
