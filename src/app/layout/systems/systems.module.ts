@@ -4,6 +4,7 @@ import { FunctionsComponent } from './functions/functions.component';
 import { UsersComponent } from './users/users.component';
 import { RolesComponent } from './roles/roles.component';
 import { PermissionsComponent } from './permissions/permissions.component';
+import { SystemsRoutingModule } from './systems-routing.module';
 
 
 
@@ -15,7 +16,8 @@ import { PermissionsComponent } from './permissions/permissions.component';
     PermissionsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SystemsRoutingModule
   ]
 })
 export class SystemsModule { }

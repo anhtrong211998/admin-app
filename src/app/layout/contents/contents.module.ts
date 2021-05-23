@@ -4,6 +4,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { KnowledgeBasesComponent } from './knowledge-bases/knowledge-bases.component';
 import { CommentsComponent } from './comments/comments.component';
 import { ReportsComponent } from './reports/reports.component';
+import { ContentsRoutingModule } from './contents-routing.module';
 
 
 
@@ -15,7 +16,8 @@ import { ReportsComponent } from './reports/reports.component';
     ReportsComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ContentsRoutingModule
   ]
 })
 export class ContentsModule { }
