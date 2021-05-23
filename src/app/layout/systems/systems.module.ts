@@ -21,8 +21,11 @@ import { UsersDetailComponent } from './users/users-detail/users-detail.componen
 import { RolesAssignComponent } from './users/roles-assign/roles-assign.component';
 import { CalendarModule } from 'primeng/calendar';
 import { CheckboxModule } from 'primeng/checkbox';
-
+import { TreeTableModule } from 'primeng/treetable';
+import { DropdownModule } from 'primeng/dropdown';
 import { KeyFilterModule } from 'primeng/keyfilter';
+import { FunctionsDetailComponent } from './functions/functions-detail/functions-detail.component';
+import { CommandsAssignComponent } from './functions/commands-assign/commands-assign.component';
 
 
 @NgModule({
@@ -33,7 +36,9 @@ import { KeyFilterModule } from 'primeng/keyfilter';
     PermissionsComponent,
     RolesDetailComponent,
     UsersDetailComponent,
-    RolesAssignComponent],
+    RolesAssignComponent,
+    FunctionsDetailComponent,
+    CommandsAssignComponent],
   imports: [
     CommonModule,
     SystemsRoutingModule,
@@ -50,6 +55,8 @@ import { KeyFilterModule } from 'primeng/keyfilter';
     KeyFilterModule,
     CalendarModule,
     CheckboxModule,
+    TreeTableModule,
+    DropdownModule,
     ModalModule.forRoot()
   ],
   providers: [
