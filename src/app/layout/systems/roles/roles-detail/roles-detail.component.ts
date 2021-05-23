@@ -1,10 +1,10 @@
 import { Component, OnInit, EventEmitter, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { MessageConstants } from '@app/shared/constants';
 import { NotificationService } from '@app/shared/services';
 import { RolesService } from '@app/shared/services/roles.service';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Subscription } from 'rxjs';
-import { MessageConstants } from '../../constants';
 
 @Component({
   selector: 'app-roles-detail',
