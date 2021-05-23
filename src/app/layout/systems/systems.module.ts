@@ -16,6 +16,7 @@ import { NotificationService } from '@app/shared/services';
 import { BsModalService, ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ValidationMessageModule } from '@app/shared/modules';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   declarations: [FunctionsComponent, UsersComponent, RolesComponent, PermissionsComponent, RolesDetailComponent],
@@ -30,6 +31,7 @@ import { ValidationMessageModule } from '@app/shared/modules';
     FormsModule,
     ReactiveFormsModule,
     ProgressSpinnerModule,
+    InputTextModule,
     ValidationMessageModule,
     ModalModule.forRoot()
   ],
