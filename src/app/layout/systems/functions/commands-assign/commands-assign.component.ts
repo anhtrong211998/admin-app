@@ -29,6 +29,7 @@ export class CommandsAssignComponent implements OnInit {
   }
 
   loadAllCommands() {
+    debugger
     this.blockedPanel = true;
     this.commandsService.getAll()
       .subscribe((response: any) => {
