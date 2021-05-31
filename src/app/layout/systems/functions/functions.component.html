@@ -16,7 +16,7 @@
       </div>
     
     </p-header>
-    <p-treeTable *ngIf="items" [value]="items" selectionMode="checkbox" [(selection)]="selectedItems"
+    <p-treeTable *ngIf="items" [value]="items" selectionMode="multiple" [(selection)]="selectedItems"
       [metaKeySelection]="true" (onNodeSelect)="nodeSelect($event)" (onNodeUnselect)="nodeUnSelect($event)"
       [scrollable]="true" dataKey="name" >
       <ng-template pTemplate="header">

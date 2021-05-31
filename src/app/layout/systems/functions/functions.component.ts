@@ -87,8 +87,10 @@ export class FunctionsComponent implements OnInit {
       return;
     }
     const initialState = {
-      entityId: this.selectedItems[0].data.id
+      entityId: this.selectedItems[0].id
+      
     };
+    console.log(this.selectedItems[0].id)
     this.bsModalRef = this.modalService.show(FunctionsDetailComponent,
       {
         initialState: initialState,
@@ -106,6 +108,9 @@ export class FunctionsComponent implements OnInit {
   nodeSelect(event: any) {
     this.selectedCommandItems = [];
     this.commands = [];
+    this.selectedItems = [];
+    this.selectedItems.push(event.node);
+    console.log(this.selectedItems)
     if (this.selectedItems.length === 1 && this.showCommandGrid) {
       this.loadDataCommand();
     }
@@ -114,6 +119,8 @@ export class FunctionsComponent implements OnInit {
   nodeUnSelect(event: any) {
     this.selectedCommandItems = [];
     this.commands = [];
+    this.selectedItems = [];
+    this.selectedItems.push(event.node);
     if (this.selectedItems.length === 1 && this.showCommandGrid) {
       this.loadDataCommand();
     }

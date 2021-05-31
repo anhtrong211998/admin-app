@@ -10,3 +10,6 @@ export * from './commands.service';
 export * from './permissions.service';
 export * from './categories.service';
 export * from './knowledge-bases.service';
+export * from './comments.service';
+export * from './reports.service';
+export * from './statistics.service';

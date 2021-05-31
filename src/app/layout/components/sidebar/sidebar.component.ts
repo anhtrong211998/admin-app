@@ -1,7 +1,8 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { AuthService, UsersService } from '@app/shared/services';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { UsersService, AuthService } from '@app/shared/services';
+import { Function } from '@app/shared/models';
 
 @Component({
     selector: 'app-sidebar',
@@ -31,20 +32,20 @@ export class SidebarComponent implements OnInit {
             }
         });
     }
-
     loadMenu() {
         const profile = this.authService.profile;
         this.userService.getMenuByUser(profile.sub).subscribe((response: Function[]) => {
             this.functions = response;
+            localStorage.setItem('functions', JSON.stringify(response));
         });
     }
-
     ngOnInit() {
         this.isActive = false;
         this.collapsed = false;
         this.showMenu = '';
         this.pushRightClass = 'push-right';
     }
+
 
     eventCalled() {
         this.isActive = !this.isActive;
