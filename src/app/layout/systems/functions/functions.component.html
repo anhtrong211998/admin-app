@@ -18,7 +18,7 @@
     </p-header>
     <p-treeTable *ngIf="items" [value]="items" selectionMode="multiple" [(selection)]="selectedItems"
       [metaKeySelection]="true" (onNodeSelect)="nodeSelect($event)" (onNodeUnselect)="nodeUnSelect($event)"
-      [scrollable]="true" dataKey="name" >
+      [scrollable]="true" dataKey="id" >
       <ng-template pTemplate="header">
         <tr>
           <th style="width: 10%;">
