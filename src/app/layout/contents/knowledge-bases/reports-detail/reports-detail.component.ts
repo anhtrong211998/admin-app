@@ -29,7 +29,7 @@ export class ReportsDetailComponent implements OnInit, OnDestroy {
       this.loadFormDetails(this.knowledgeBaseId, this.reportId);
     }
   }
-  private loadFormDetails(reportId, knowledgeBaseId) {
+  private loadFormDetails(knowledgeBaseId, reportId) {
     this.blockedPanel = true;
     this.subscription.add(this.reportServices.getDetail(knowledgeBaseId, reportId)
       .subscribe((response: Report) => {
