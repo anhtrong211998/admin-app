@@ -3,7 +3,7 @@ import { KnowledgeBasesService, NotificationService, CategoriesService, Utilitie
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { MessageConstants } from '@app/shared/constants';
-import { Category } from '@app/shared/models';
+import { Category, KnowledgeBase } from '@app/shared/models';
 import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from '@environments/environment';
 import { SelectItem } from 'primeng/api/selectitem';

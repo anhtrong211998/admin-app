@@ -89,8 +89,16 @@ export class UtilitiesService extends BaseService {
   ToFormData(formValue: any) {
     const formData = new FormData();
     for (const key of Object.keys(formValue)) {
-      const value = formValue[key];
-      formData.append(key, value);
+      
+      if(Array.isArray(formValue[key])){
+        formValue[key].forEach(function (item) {
+          formData.append(key, item);
+        });
+      }
+      else{
+        const value = formValue[key];
+          formData.append(key, value);
+      }
     }
 
     return formData;
