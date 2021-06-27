@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CommentsService, ReportsService, StatisticsService, UsersService } from '@app/shared/services';
 import { routerTransition } from '../../router.animations';
+import { BaseComponent } from '../base/base.component';
 
 @Component({
     selector: 'app-dashboard',
@@ -8,52 +10,74 @@ import { routerTransition } from '../../router.animations';
     animations: [routerTransition()]
 })
 export class DashboardComponent implements OnInit {
-    public alerts: Array<any> = [];
-    public sliders: Array<any> = [];
-
-    constructor() {
-        this.sliders.push(
-            {
-                imagePath: 'assets/images/slider1.jpg',
-                label: 'First slide label',
-                text: 'Nulla vitae elit libero, a pharetra augue mollis interdum.'
-            },
-            {
-                imagePath: 'assets/images/slider2.jpg',
-                label: 'Second slide label',
-                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-            },
-            {
-                imagePath: 'assets/images/slider3.jpg',
-                label: 'Third slide label',
-                text: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
-            }
-        );
-
-        this.alerts.push(
-            {
-                id: 1,
-                type: 'success',
-                message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptates est animi quibusdam praesentium quam, et perspiciatis,
-                consectetur velit culpa molestias dignissimos
-                voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
-            },
-            {
-                id: 2,
-                type: 'warning',
-                message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptates est animi quibusdam praesentium quam, et perspiciatis,
-                consectetur velit culpa molestias dignissimos
-                voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum`
-            }
-        );
+     // Default
+  public blockedPanel = false;
+    public items: any[];
+    public year: number = new Date().getFullYear();
+    public totalKbs = 0;
+    public totalMember = 0;
+    public totalComment = 0;
+    public totalReport = 0;
+    constructor(
+      private statisticService: StatisticsService,
+      private usersService: UsersService,
+      private commentsService: CommentsService,
+      private reportsService: ReportsService) {
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.loadData();
 
-    public closeAlert(alert: any) {
-        const index: number = this.alerts.indexOf(alert);
-        this.alerts.splice(index, 1);
     }
+
+    loadData() {
+        this.blockedPanel = true;
+        this.statisticService.getMonthlyNewKbs(this.year)
+          .subscribe((response: any) => {
+            this.totalKbs = 0;
+            this.items = response;
+            response.forEach(element => {
+              this.totalKbs += element.numberOfNewKbs;
+            });
+            setTimeout(() => { this.blockedPanel = false; }, 1000);
+          }, error => {
+            setTimeout(() => { this.blockedPanel = false; }, 1000);
+        });
+
+        this.usersService.getAll()
+            .subscribe((response: any) => {
+            this.totalMember = 0;
+            this.items = response;
+            response.forEach(element => {
+                this.totalMember += 1;
+            });
+            setTimeout(() => { this.blockedPanel = false; }, 1000);
+            }, error => {
+            setTimeout(() => { this.blockedPanel = false; }, 1000);
+        });
+
+        this.commentsService.getAll(undefined)
+            .subscribe((response: any) => {
+            this.totalComment = 0;
+            this.items = response;
+            response.forEach(element => {
+                this.totalComment += 1;
+            });
+            setTimeout(() => { this.blockedPanel = false; }, 1000);
+            }, error => {
+            setTimeout(() => { this.blockedPanel = false; }, 1000);
+        });
+
+        this.reportsService.getAll(undefined)
+            .subscribe((response: any) => {
+            this.totalReport = 0;
+            this.items = response;
+            response.forEach(element => {
+                this.totalReport += 1;
+            });
+            setTimeout(() => { this.blockedPanel = false; }, 1000);
+            }, error => {
+            setTimeout(() => { this.blockedPanel = false; }, 1000);
+        });
+      }
 }

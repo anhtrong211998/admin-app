@@ -13,6 +13,12 @@ export class CommentsService extends BaseService {
         super();
         this._sharedHeaders = this._sharedHeaders.set('Content-Type', 'application/json');
     }
+    getAll(knowledgeBaseId) {
+        return this.http.get<Comment>(`${environment.apiUrl}/api/knowledgeBases/${knowledgeBaseId}/comments`,
+            { headers: this._sharedHeaders })
+            .pipe(catchError(this.handleError));
+    }
+
     getDetail(knowledgeBaseId, commentId) {
         return this.http.get<Comment>(`${environment.apiUrl}/api/knowledgeBases/${knowledgeBaseId}/comments/${commentId}`,
             { headers: this._sharedHeaders })

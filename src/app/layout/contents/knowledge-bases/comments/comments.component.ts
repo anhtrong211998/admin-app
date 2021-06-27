@@ -37,6 +37,7 @@ export class CommentsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscription.add(this.activeRoute.params.subscribe(params => {
       this.entityId = params['knowledgeBaseId'];
+      console.log(this.entityId);
     }));
     this.loadData();
   }

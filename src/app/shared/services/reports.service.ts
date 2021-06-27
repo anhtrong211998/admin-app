@@ -19,6 +19,13 @@ export class ReportsService extends BaseService {
             .pipe(catchError(this.handleError));
     }
 
+    getAll(knowledgeBaseId) {
+        return this.http.get<Pagination<Report>>(`${environment.apiUrl}/api/knowledgeBases/${knowledgeBaseId}/reports`, { headers: this._sharedHeaders })
+            .pipe(map((response: Pagination<Report>) => {
+                return response;
+            }), catchError(this.handleError));
+    }
+
     getAllPaging(knowledgeBaseId, filter, pageIndex, pageSize) {
         return this.http.get<Pagination<Report>>(`${environment.apiUrl}/api/knowledgeBases/${knowledgeBaseId}/reports/filter?pageIndex=${pageIndex}&pageSize=${pageSize}&filter=${filter}`, { headers: this._sharedHeaders })
             .pipe(map((response: Pagination<Report>) => {

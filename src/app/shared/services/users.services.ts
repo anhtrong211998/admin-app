@@ -25,6 +25,11 @@ export class UsersService extends BaseService {
             .pipe(catchError(this.handleError));
     }
 
+    getAll() {
+        return this.http.get<User>(`${environment.apiUrl}/api/users`, { headers: this._sharedHeaders })
+            .pipe(catchError(this.handleError));
+    }
+
     getDetail(id) {
         return this.http.get<User>(`${environment.apiUrl}/api/users/${id}`, { headers: this._sharedHeaders })
             .pipe(catchError(this.handleError));
