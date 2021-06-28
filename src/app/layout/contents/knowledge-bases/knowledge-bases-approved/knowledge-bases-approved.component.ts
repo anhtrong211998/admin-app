@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { KnowledgeBasesService } from '@app/shared/services/knowledge-bases.service';
 import { NotificationService } from '@app/shared/services';
@@ -6,13 +6,12 @@ import { Pagination, KnowledgeBase } from '@app/shared/models';
 import { MessageConstants } from '@app/shared/constants';
 import { Router } from '@angular/router';
 import { BaseComponent } from '@app/layout/base/base.component';
-
 @Component({
-  selector: 'app-knowledge-bases',
-  templateUrl: './knowledge-bases.component.html',
-  styleUrls: ['./knowledge-bases.component.css']
+  selector: 'app-knowledge-bases-approved',
+  templateUrl: './knowledge-bases-approved.component.html',
+  styleUrls: ['./knowledge-bases-approved.component.css']
 })
-export class KnowledgeBasesComponent extends BaseComponent implements OnInit, OnDestroy {
+export class KnowledgeBasesApprovedComponent extends BaseComponent implements OnInit, OnDestroy {
 
   private subscription = new Subscription();
   // Default
@@ -41,7 +40,7 @@ export class KnowledgeBasesComponent extends BaseComponent implements OnInit, On
 
   loadData(selectedId = null) {
     this.blockedPanel = true;
-    this.subscription.add(this.knowledgeBasesService.getAllPaging(this.keyword, this.pageIndex, this.pageSize)
+    this.subscription.add(this.knowledgeBasesService.getApprovedPaging(this.keyword, this.pageIndex, this.pageSize)
       .subscribe((response: Pagination<KnowledgeBase>) => {
         this.processLoadData(selectedId, response);
         setTimeout(() => { this.blockedPanel = false; }, 1000);
@@ -49,27 +48,19 @@ export class KnowledgeBasesComponent extends BaseComponent implements OnInit, On
         setTimeout(() => { this.blockedPanel = false; }, 1000);
       }));
   }
-  viewComments() {
+  Approved() {
     if (this.selectedItems.length === 0) {
       this.notificationService.showError(MessageConstants.NOT_CHOOSE_ANY_RECORD);
       return;
     }
-    this.router.navigateByUrl('/contents/knowledge-bases/' + this.selectedItems[0].id + '/comments');
-  }
-  viewReports() {
-    if (this.selectedItems.length === 0) {
-      this.notificationService.showError(MessageConstants.NOT_CHOOSE_ANY_RECORD);
-      return;
-    }
-    this.router.navigateByUrl('/contents/knowledge-bases/' + this.selectedItems[0].id + '/reports');
-  }
-
-  viewApproved() {
-    if (this.selectedItems.length === 0) {
-      this.notificationService.showError(MessageConstants.NOT_CHOOSE_ANY_RECORD);
-      return;
-    }
-    this.router.navigateByUrl('/contents/knowledge-bases/approved');
+    const id = this.selectedItems[0].id;
+    this.subscription.add(this.knowledgeBasesService.appvoved(id)
+    .subscribe(() => {
+      this.notificationService.showSuccess(MessageConstants.UPDATED_OK_MSG);
+      setTimeout(() => { this.blockedPanel = false;}, 1000);
+    }, error => {
+      setTimeout(() => { this.blockedPanel = false; }, 1000);
+    }));
   }
 
   private processLoadData(selectedId = null, response: Pagination<KnowledgeBase>) {
@@ -89,37 +80,7 @@ export class KnowledgeBasesComponent extends BaseComponent implements OnInit, On
     this.pageSize = event.rows;
     this.loadData();
   }
-
-  showAddModal() {
-    this.router.navigateByUrl('/contents/knowledge-bases-detail/');
-  }
-  showEditModal() {
-    if (this.selectedItems.length === 0) {
-      this.notificationService.showError(MessageConstants.NOT_CHOOSE_ANY_RECORD);
-      return;
-    }
-    this.router.navigateByUrl('/contents/knowledge-bases-detail/' + this.selectedItems[0].id);
-  }
-
-  deleteItems() {
-    const id = this.selectedItems[0].id;
-    this.notificationService.showConfirmation(MessageConstants.CONFIRM_DELETE_MSG,
-      () => this.deleteItemsConfirm(id));
-  }
-  deleteItemsConfirm(id) {
-    this.blockedPanel = true;
-    this.subscription.add(this.knowledgeBasesService.delete(id).subscribe(() => {
-      this.notificationService.showSuccess(MessageConstants.DELETED_OK_MSG);
-      this.loadData();
-      this.selectedItems = [];
-      setTimeout(() => { this.blockedPanel = false; }, 1000);
-    }, error => {
-      setTimeout(() => { this.blockedPanel = false; }, 1000);
-    }));
-  }
-
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
-
 }

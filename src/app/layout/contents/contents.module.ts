@@ -30,6 +30,7 @@ import { CommentsDetailComponent } from './knowledge-bases/comments-detail/comme
 import { CommentsComponent } from './knowledge-bases/comments/comments.component';
 import { ReportsDetailComponent } from './knowledge-bases/reports-detail/reports-detail.component';
 import { ReportsComponent } from './knowledge-bases/reports/reports.component';
+import { KnowledgeBasesApprovedComponent } from './knowledge-bases/knowledge-bases-approved/knowledge-bases-approved.component';
 
 
 
@@ -42,7 +43,8 @@ import { ReportsComponent } from './knowledge-bases/reports/reports.component';
     KnowledgeBasesDetailComponent,
     CategoriesDetailComponent,
     CommentsDetailComponent,
-    ReportsDetailComponent
+    ReportsDetailComponent,
+    KnowledgeBasesApprovedComponent
   ],
   imports: [
     CommonModule,

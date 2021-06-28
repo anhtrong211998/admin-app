@@ -3,25 +3,9 @@
     <p-panel #pnl>
         <p-header>
             <div class="ui-g-6">
-                <button appPermission appFunction="CONTENT_KNOWLEDGEBASE" appAction="CREATE" pButton type="button"
-                    label="Thêm" icon="fa fa-plus" (click)="showAddModal()"></button>
-                <button appPermission appFunction="CONTENT_KNOWLEDGEBASE" appAction="DELETE" pButton type="button"
-                    label="Xóa" icon="fa fa-trash" class="ui-button-danger" *ngIf="selectedItems.length > 0"
-                    (click)="deleteItems()"></button>
-                <button appPermission appFunction="CONTENT_KNOWLEDGEBASE" appAction="UPDATE" pButton type="button"
-                    label="Sửa" icon="fa fa-edit" class="ui-button-warning" *ngIf="selectedItems.length== 1"
-                    (click)="showEditModal()"></button>
-
-                <button appPermission appFunction="CONTENT_COMMENT" appAction="VIEW" pButton type="button"
-                    label="Bình luận" icon="fa fa-eye" class="ui-button-primary" *ngIf="selectedItems.length== 1"
-                    (click)="viewComments()"></button>
-
-                <button appPermission appFunction="CONTENT_REPORT" appAction="VIEW" pButton type="button"
-                    label="Báo xấu" icon="fa fa-magic" class="ui-button-primary" *ngIf="selectedItems.length== 1"
-                    (click)="viewReports()"></button>
-                    <button appPermission appFunction="CONTENT_KNOWLEDGEBASE" appAction="VIEW" pButton type="button"
-                    label="Bài viết mới" icon="fa fa-book" class="ui-button-primary"
-                    (click)="viewApproved()"></button>
+                    <button appPermission appFunction="CONTENT_KNOWLEDGEBASE" appAction="UPDATE" pButton type="button"
+                    label="Approved" icon="fa fa-book" class="ui-button-primary"
+                    (click)="Approved()"></button>
             </div>
             <div class="ui-g-6">
                 <input style="width: 100%;" pInputText (keyup.enter)="loadData()" [(ngModel)]="keyword"

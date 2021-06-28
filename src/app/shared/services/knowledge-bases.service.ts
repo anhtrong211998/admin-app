@@ -29,6 +29,14 @@ export class KnowledgeBasesService extends BaseService {
             }).pipe(catchError(this.handleError));
     }
 
+    appvoved(id: string) {
+        return this.http.put(`${environment.apiUrl}/api/knowledgeBases/${id}/approved`,
+            {
+                reportProgress: true,
+                observe: 'events'
+            }).pipe(catchError(this.handleError));
+    }
+
     getDetail(id) {
         return this.http.get<KnowledgeBase>(`${environment.apiUrl}/api/knowledgeBases/${id}`, { headers: this._sharedHeaders })
             .pipe(catchError(this.handleError));
@@ -36,6 +44,13 @@ export class KnowledgeBasesService extends BaseService {
 
     getAllPaging(filter, pageIndex, pageSize) {
         return this.http.get<Pagination<KnowledgeBase>>(`${environment.apiUrl}/api/knowledgeBases/filter?pageIndex=${pageIndex}&pageSize=${pageSize}&filter=${filter}`, { headers: this._sharedHeaders })
+            .pipe(map((response: Pagination<KnowledgeBase>) => {
+                return response;
+            }), catchError(this.handleError));
+    }
+
+    getApprovedPaging(filter, pageIndex, pageSize) {
+        return this.http.get<Pagination<KnowledgeBase>>(`${environment.apiUrl}/api/knowledgeBases/unapproved?pageIndex=${pageIndex}&pageSize=${pageSize}&filter=${filter}`, { headers: this._sharedHeaders })
             .pipe(map((response: Pagination<KnowledgeBase>) => {
                 return response;
             }), catchError(this.handleError));

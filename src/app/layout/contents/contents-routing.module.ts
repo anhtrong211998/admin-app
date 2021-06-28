@@ -6,6 +6,7 @@ import { AuthGuard } from '@app/shared';
 import { KnowledgeBasesDetailComponent } from './knowledge-bases/knowledge-bases-detail/knowledge-bases-detail.component';
 import { CommentsComponent } from './knowledge-bases/comments/comments.component';
 import { ReportsComponent } from './knowledge-bases/reports/reports.component';
+import { KnowledgeBasesApprovedComponent } from './knowledge-bases/knowledge-bases-approved/knowledge-bases-approved.component';
 
 const routes: Routes = [
     {
@@ -69,6 +70,15 @@ const routes: Routes = [
         component: ReportsComponent,
         data: {
             functionCode: 'CONTENT_REPORT'
+        },
+        canActivate: [AuthGuard]
+    }
+    ,
+    {
+        path: 'knowledge-bases/approved',
+        component: KnowledgeBasesApprovedComponent,
+        data: {
+            functionCode: 'CONTENT_KNOWLEDGEBASE'
         },
         canActivate: [AuthGuard]
     }
