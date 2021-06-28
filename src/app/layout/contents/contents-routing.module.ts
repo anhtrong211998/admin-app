@@ -7,6 +7,7 @@ import { KnowledgeBasesDetailComponent } from './knowledge-bases/knowledge-bases
 import { CommentsComponent } from './knowledge-bases/comments/comments.component';
 import { ReportsComponent } from './knowledge-bases/reports/reports.component';
 import { KnowledgeBasesApprovedComponent } from './knowledge-bases/knowledge-bases-approved/knowledge-bases-approved.component';
+import { ViewKnowledgebasesDetailComponent } from './knowledge-bases/view-knowledgebases-detail/view-knowledgebases-detail.component';
 
 const routes: Routes = [
     {
@@ -46,6 +47,14 @@ const routes: Routes = [
         component: CommentsComponent,
         data: {
             functionCode: 'CONTENT_COMMENT'
+        },
+        canActivate: [AuthGuard]
+    },
+    {
+        path: 'knowledge-bases/:knowledgeBaseId/details',
+        component: ViewKnowledgebasesDetailComponent,
+        data: {
+            functionCode: 'CONTENT_KNOWLEDGEBASE'
         },
         canActivate: [AuthGuard]
     },

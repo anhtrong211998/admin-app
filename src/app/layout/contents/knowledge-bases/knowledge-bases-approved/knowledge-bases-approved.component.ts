@@ -57,6 +57,7 @@ export class KnowledgeBasesApprovedComponent extends BaseComponent implements On
     this.subscription.add(this.knowledgeBasesService.appvoved(id)
     .subscribe(() => {
       this.notificationService.showSuccess(MessageConstants.UPDATED_OK_MSG);
+      this.loadData();
       setTimeout(() => { this.blockedPanel = false;}, 1000);
     }, error => {
       setTimeout(() => { this.blockedPanel = false; }, 1000);

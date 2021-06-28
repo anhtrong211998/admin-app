@@ -31,6 +31,7 @@ import { CommentsComponent } from './knowledge-bases/comments/comments.component
 import { ReportsDetailComponent } from './knowledge-bases/reports-detail/reports-detail.component';
 import { ReportsComponent } from './knowledge-bases/reports/reports.component';
 import { KnowledgeBasesApprovedComponent } from './knowledge-bases/knowledge-bases-approved/knowledge-bases-approved.component';
+import { ViewKnowledgebasesDetailComponent } from './knowledge-bases/view-knowledgebases-detail/view-knowledgebases-detail.component';
 
 
 
@@ -44,7 +45,8 @@ import { KnowledgeBasesApprovedComponent } from './knowledge-bases/knowledge-bas
     CategoriesDetailComponent,
     CommentsDetailComponent,
     ReportsDetailComponent,
-    KnowledgeBasesApprovedComponent
+    KnowledgeBasesApprovedComponent,
+    ViewKnowledgebasesDetailComponent
   ],
   imports: [
     CommonModule,

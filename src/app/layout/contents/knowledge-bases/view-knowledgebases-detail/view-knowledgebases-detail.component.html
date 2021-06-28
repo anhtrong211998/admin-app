@@ -1,0 +1,111 @@
+<p>{{dialogTitle}}</p>
+<div class="animated fadeIn" *ngIf="knowledgebase">
+    <p-panel #pnl>
+        <p-header>
+            <div class="ui-g-6">
+                <button pButton type="button" label="Quay lại trang danh sách" icon="fa fa-arrow-left"
+                    (click)="goBackToList()"></button>
+                <button pButton type="button" label="Approved" icon="fa fa-book"
+                    (click)="Approved()"></button>
+            </div>
+        </p-header>
+        <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" >
+
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    <span class="required">Danh mục:</span>
+                </div>
+                <div class="ui-grid-col-10">
+                    <span>{{knowledgebase.categoryId}}</span>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    <span class="required">Tiêu đề:</span>
+                </div>
+                <div class="ui-grid-col-10">
+                    <span>{{knowledgebase.title}}</span>
+                </div>
+            </div>
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    <span class="required">Mô tả:</span>
+                </div>
+                <div class="ui-grid-col-10">
+                    <span [innerHTML]="knowledgebase.description"></span>
+                </div>
+            </div>
+
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    <span class="required">Môi trường:</span>
+                </div>
+                <div class="ui-grid-col-10">
+                    <span [innerHTML]="knowledgebase.environment"></span>
+                </div>
+            </div>
+
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    <span class="required">Vấn đề:</span>
+                </div>
+                <div class="ui-grid-col-10">
+                    <span [innerHTML]="knowledgebase.problem"></span>
+                </div>
+            </div>
+
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    <span class="required">Các bước để tái hiện:</span>
+                </div>
+                <div class="ui-grid-col-10">
+                    <span [innerHTML]="knowledgebase.stepToReproduce"></span>
+                </div>
+            </div>
+
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    <span class="required">Lỗi:</span>
+                </div>
+                <div class="ui-grid-col-10">
+                    <span [innerHTML]="knowledgebase.errorMessage"></span>
+                </div>
+            </div>
+
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    <span class="required">Sửa nhanh:</span>
+                </div>
+                <div class="ui-grid-col-10">
+                    <span [innerHTML]="knowledgebase.workaround"></span>
+                </div>
+            </div>
+
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    <span class="required">Chú ý:</span>
+                </div>
+                <div class="ui-grid-col-10">
+                    <span [innerHTML]="knowledgebase.note"></span>
+                </div>
+            </div>
+
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-2">
+                    <span class="required">Nhãn:</span>
+                </div>
+                <div class="ui-grid-col-10">
+                    <span>{{knowledgebase.labels}}</span>
+                </div>
+            </div>
+        </div>
+
+        <p-footer>
+
+            <p-blockUI [target]="pnl" [blocked]="blockedPanel">
+                <p-progressSpinner [style]="{width: '100px', height: '100px', position:'absolute',top:'25%',left:'50%'}"
+                    strokeWidth="2" animationDuration=".5s"></p-progressSpinner>
+            </p-blockUI>
+        </p-footer>
+    </p-panel>
+</div>

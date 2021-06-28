@@ -49,6 +49,13 @@ export class KnowledgeBasesService extends BaseService {
             }), catchError(this.handleError));
     }
 
+    getAllapprove() {
+        return this.http.get<Pagination<KnowledgeBase>>(`${environment.apiUrl}/api/knowledgeBases/approve`, { headers: this._sharedHeaders })
+            .pipe(map((response: any) => {
+                return response;
+            }), catchError(this.handleError));
+    }
+
     getApprovedPaging(filter, pageIndex, pageSize) {
         return this.http.get<Pagination<KnowledgeBase>>(`${environment.apiUrl}/api/knowledgeBases/unapproved?pageIndex=${pageIndex}&pageSize=${pageSize}&filter=${filter}`, { headers: this._sharedHeaders })
             .pipe(map((response: Pagination<KnowledgeBase>) => {

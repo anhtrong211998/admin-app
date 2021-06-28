@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
-import { AuthService } from '@app/shared/services';
+import { AuthService, KnowledgeBasesService } from '@app/shared/services';
 
 @Component({
     selector: 'app-header',
@@ -11,13 +11,14 @@ import { AuthService } from '@app/shared/services';
 })
 export class HeaderComponent implements OnInit {
     public pushRightClass: string;
-
+    public blockedPanel = false;
     userName: string;
     isAuthenticated: boolean;
     subscription: Subscription;
+    public items: any;
 
     constructor(private translate: TranslateService, public router: Router,
-        private authService: AuthService) {
+        private authService: AuthService,private knowledgeBasesService: KnowledgeBasesService) {
 
         this.subscription = this.authService.authNavStatus$.subscribe(status => this.isAuthenticated = status);
         this.userName = this.authService.name;
@@ -35,6 +36,15 @@ export class HeaderComponent implements OnInit {
 
     ngOnInit() {
         this.pushRightClass = 'push-right';
+        this.blockedPanel = true;
+        this.subscription.add(this.knowledgeBasesService.getAllapprove()
+      .subscribe((response: any) => {
+          this.items = response;
+          console.log(this.items);
+        setTimeout(() => { this.blockedPanel = false; }, 1000);
+      }, error => {
+        setTimeout(() => { this.blockedPanel = false; }, 1000);
+      }));
     }
 
     isToggled(): boolean {

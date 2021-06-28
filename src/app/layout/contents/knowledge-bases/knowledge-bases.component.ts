@@ -56,6 +56,15 @@ export class KnowledgeBasesComponent extends BaseComponent implements OnInit, On
     }
     this.router.navigateByUrl('/contents/knowledge-bases/' + this.selectedItems[0].id + '/comments');
   }
+
+  ViewDetail() {
+    if (this.selectedItems.length === 0) {
+      this.notificationService.showError(MessageConstants.NOT_CHOOSE_ANY_RECORD);
+      return;
+    }
+    this.router.navigateByUrl('/contents/knowledge-bases/' + this.selectedItems[0].id + '/details');
+  }
+
   viewReports() {
     if (this.selectedItems.length === 0) {
       this.notificationService.showError(MessageConstants.NOT_CHOOSE_ANY_RECORD);
